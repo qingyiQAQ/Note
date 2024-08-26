@@ -1,0 +1,40 @@
+https://www.huaweicloud.com/
+su - omm切换至omm操作系统用户环境
+gs_om -t start
+gs_om -t status
+gs_om -t stop
+gsql -d postgres -p 26000 -r
+gsql -d db_tpcc -p 26000 -U qingyi -W Cc50781Cc -r连接数据库
+\q退出数据库
+CREATE TABLE mytable (firstcol int);创建表
+INSERT INTO mytable values (100);插入数据
+SELECT * from mytable;查看数据
+gs_on -t stop关闭
+CREATE USER joe WITH PASSWORD "Bigdata@123";创建用户
+CREATE DATABASE db_tpcc OWNER joe;创建数据库
+\l查看数据库
+\d查看表
+\d+ 表名          查看表数据类型
+
+set search_path=模式名;用于\d问题的解决
+
+select * from 表名;查看表中数据
+
+select count(*) from 表名;查看表中数据数目
+
+SELECT conname, contype, condeferrable, condeferred
+FROM pg_constraint
+WHERE conrelid = '表名'::regclass;查看约束条件
+
+alter table 表名 alter column 列名 set not null;设置非空
+
+alter table 表名 add constraint 主键名 primary key(列名);设置主键
+
+alter table 表名  add constraint 外键名 foreign key(列名) references 被参照表名(被参照列名);设置外键
+
+update 表名 set 列名=新数据 where 同列名=旧数据;
+
+\copy orders from '/home/omm/contact.csv' with (delimiter',',ignore_extra_data 'on');
+\copy orders from '/home/omm/contact.csv' with csv;导入csv文件
+
+delete from 表名;删除表中所有数据
