@@ -146,3 +146,17 @@ auto-aof-rewrite-min-size 64mb	//AOF文件体积最小多大以上触发重写
 （8）volatile-lfu：对设置了TTL的key，基于LFU算法淘汰
 
 LFU：最少频率使用
+
+## 分布式锁
+
+1、定义：在**不同的服务器**之间加锁
+
+主要通过setnx命令实现
+
+```
+//获取锁
+SET lock value NX EX 10//添加锁、NX是互斥、EX是设置超时时间
+//释放锁
+DEL key
+```
+
